@@ -1,6 +1,9 @@
 # Teste DevOps
 Repositório criado para apresentação do teste feito com ferramentas de DevOps.
 
+Para provisionar a maquina e configurar e subir os serviços:
+> vagrant up --provider (virtualbox|digital_ocean) --provision
+
 #### Ferramentas usadas no teste.
 Todo o teste foi realizado usando o sistema operacional FreeBSD como base e o VIM como editor de texto para escrever o código.
 
