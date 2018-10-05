@@ -1,0 +1,32 @@
+- name: Add Grafana Key
+  apt_key:
+    url: https://packagecloud.io/gpg.key
+
+- name: Add APT Repository Testing
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - deb http://ftp.de.debian.org/debian testing main
+
+- include: apt.yml
+
+- name: Checking if Prometheus Service was Created
+  service: name="prometheus" state="started"
+  register: prometheus_service
+  ignore_errors: yes
+
+- name: Checking if Prometheus was Downloaded
+  find: paths="/opt/projetos/prometheus/" file_type=directory pattern="*.*"
+  register: prometheus_files
+  ignore_errors: yes
+
+- name: Checking if Alertmanager Service was Created
+  service: name="alertmanager" state="started"
+  register: alertmanager_service
+  ignore_errors: yes
+
+- name: Checking if Alertmanager was Downloaded
+  find: paths="/opt/projetos/alertmanager/" file_type=directory pattern="*.*"
+  register: alertmanager_files
+  ignore_errors: yes

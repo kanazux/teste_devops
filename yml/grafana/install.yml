@@ -1,0 +1,39 @@
+- name: Install Grafana
+  apt: name=grafana state=present
+
+- name: Copy Grafana Datasource
+  copy:
+    src: "grafana/ds_prometheus.yaml"
+    dest: "/etc/grafana/provisioning/datasources/ds_prometheus.yaml"
+    mode: 0755
+    owner: grafana
+    group: grafana
+
+- name: Copy Grafana Datasource
+  copy:
+    src: "grafana/ds_alertmanager.yaml"
+    dest: "/etc/grafana/provisioning/datasources/ds_alertmanager.yaml"
+    mode: 0755
+    owner: grafana
+    group: grafana
+
+- name: Copy Grafana Dashboard Provisioner
+  copy:
+    src: "grafana/dash_prometheus.yaml"
+    dest: "/etc/grafana/provisioning/dashboards/dash_prometheus.yaml"
+    mode: 0755
+    owner: grafana
+    group: grafana
+
+- name: Create Dashboard Directory
+  file:
+    path: "/var/lib/grafana/dashboard"
+    mode: 0755
+    owner: grafana
+    group: grafana
+    state: directory
+
+- name: Install AlertManager Plugin
+  command: grafana-cli plugins install camptocamp-prometheus-alertmanager-datasource
+
+- include: copy_templates.yml

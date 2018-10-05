@@ -1,0 +1,16 @@
+- name: Create Init Prometheus
+  block:
+    - name: Copy Init File
+      copy:
+        src: init/prometheus
+        dest: /etc/init.d/prometheus
+        mode: 0777
+        owner: root
+        group: root
+
+    - name: Update RC Prometheus
+      command: update-rc.d prometheus defaults
+
+    - name: Define Prometheus to Start on Boot
+      command: echo "START=yes" > /etc/default/prometheus
+  when: "'service could not be found' not in prometheus_service"

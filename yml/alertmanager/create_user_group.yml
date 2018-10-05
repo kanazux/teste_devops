@@ -1,0 +1,11 @@
+- name: Ensure group "alertmanager" exists
+  group:
+    name: alertmanager
+    state: present
+
+- name: Create User alertmanager
+  user:
+    name: alertmanager
+    group: alertmanager
+    comment: alertmanager
+    append: yes

@@ -1,0 +1,11 @@
+- name: Ensure group "prometheus" exists
+  group:
+    name: prometheus
+    state: present
+
+- name: Create User prometheus
+  user:
+    name: prometheus
+    group: prometheus
+    comment: prometheus
+    append: yes

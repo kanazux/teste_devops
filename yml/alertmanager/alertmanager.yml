@@ -1,0 +1,59 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'kanatheus@gmail.com'
+  smtp_auth_username: 'kanatheus@gmail.com'
+  smtp_auth_password: 'theuskana'
+
+templates:
+- '/etc/alertmanager/*.tmpl'
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 5m
+  receiver: prometheus-alerts
+
+  routes:
+  - match:
+      severity: 'page'
+    receiver: 'prometheus-alerts'
+    routes:
+    - match:
+        severity: 'warning'
+      receiver: 'prometheus-alerts'
+
+  - match:
+      severity: 'page'
+    receiver: 'gmail-alerts'
+    routes:
+    - match:
+        severity: 'info'
+      receiver: 'gmail-alerts'
+
+inhibit_rules:
+- source_match:
+    severity: 'page'
+  target_match:
+    severity: 'warning'
+  equal: ['alertname']
+
+receivers:
+- name: prometheus-alerts
+  slack_configs:
+    - api_url: "https://hooks.slack.com/services/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"
+      channel: "#prometheus-alerts"
+      icon_emoji: ":ghost:"
+      icon_url: "https://slack.com/img/icons/app-57.png"
+      username: "prometheus-alerts"
+
+- name: gmail-alerts
+  email_configs:
+    - to: 'contato@kanazuchi.com'
+      from: 'kanatheus@gmail.com'
+      smarthost: 'smtp.gmail.com:587'
+      auth_username: "kanatheus@gmail.com"
+      auth_identity: "kanatheus@gmail.com"
+      auth_password: "theuskana"
+
+

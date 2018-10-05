@@ -1,0 +1,74 @@
+- include: create_user_group.yml
+
+- name: Create AlertManager Directory
+  file:
+    path: /opt/projetos/alertmanager
+    owner: alertmanager
+    group: alertmanager
+    mode: 0777
+    state: directory
+
+- name: Get Alert Manager
+  unarchive:
+    src: https://github.com/prometheus/alertmanager/releases/download/v0.15.2/alertmanager-0.15.2.linux-amd64.tar.gz
+    dest: /opt/projetos/alertmanager
+    remote_src: yes
+  when: "alertmanager_files.matched|int == 0"
+
+- name: Copy Alert Binaries to /usr/local/bin
+  command: "{{ item }}"
+  with_items:
+    - cp -n /opt/projetos/alertmanager/alertmanager-0.15.2.linux-amd64/amtool /usr/local/bin/
+    - cp -n /opt/projetos/alertmanager/alertmanager-0.15.2.linux-amd64/alertmanager /usr/local/bin/
+
+- name: Change Permissions Alert Manager
+  file:
+    path: "{{ item }}"
+    mode: 0755
+    owner: alertmanager
+    group: alertmanager
+  with_items:
+    - /usr/local/bin/amtool
+    - /usr/local/bin/alertmanager
+
+- name: Create alertmanager Directory in /etc
+  file:
+    path: "/etc/alertmanager"
+    mode: 0755
+    owner: alertmanager
+    group: alertmanager
+    state: directory
+
+- name: Create alertmanager Directory in /var/lib
+  file:
+    path: "/var/lib/alertmanager"
+    mode: 0755
+    owner: alertmanager
+    group: alertmanager
+    state: directory
+
+- name: Copy alertmanager.yml
+  copy:
+    src: "alertmanager.yml"
+    dest: "/etc/alertmanager/alertmanager.yml"
+    mode: 0755
+    owner: alertmanager
+    group: alertmanager
+
+- name: Create alertmanager Directory in /var/log
+  file:
+    path: "/var/log/alertmanager"
+    mode: 0755
+    owner: alertmanager
+    group: alertmanager
+    state: directory
+
+- name: Create alertmanager Directory in /var/run
+  file:
+    path: "/var/run/alertmanager"
+    mode: 0755
+    owner: alertmanager
+    group: alertmanager
+    state: directory
+
+- include: create_init_files.yml

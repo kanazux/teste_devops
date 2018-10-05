@@ -1,0 +1,27 @@
+---
+- hosts: all
+  remote_user: vagrant
+  become: yes
+
+  vars_files:
+    - vars/vars.yml
+
+  handlers:
+    - name: Restart Services
+      service: name="{{ item }}" state=restarted
+      with_items:
+        - grafana-server
+        - prometheus
+        - alertmanager
+
+  pre_tasks:
+    - include: pre_tasks.yml
+
+  tasks:
+    - include: prometheus/install.yml
+    - include: grafana/install.yml
+    - include: alertmanager/install.yml
+
+    - debug: msg="Restarting Services"
+      notify: Restart Services
+      changed_when: true

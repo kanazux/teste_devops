@@ -1,0 +1,13 @@
+- name: Copy Grafana Templates in JSON
+  copy:
+    src: "{{ item }}"
+    dest: "/var/lib/grafana/dashboard/"
+    mode: 0755
+    owner: grafana
+    group: grafana
+  with_items:
+    - "templates/named_process.json"
+    - "templates/host_recurses.json"
+    - "templates/alertmanager.json"
+    - "templates/windows_hosts.json"
+    - "templates/windows_process.json"

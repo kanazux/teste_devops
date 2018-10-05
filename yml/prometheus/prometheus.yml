@@ -1,0 +1,54 @@
+global:
+  scrape_interval: 15s
+
+rule_files:
+  - rules.yml
+
+scrape_configs:
+  - job_name: 'dashboard_caterpy_info'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['142.93.192.120:9100']
+        labels:
+          server: "caterpy_info"
+
+  - job_name: 'process_caterpy_info'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['142.93.192.120:9256']
+        labels:
+          server: "caterpy_info"
+
+  - job_name: 'windows_amazon'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['52.32.206.246:9182']
+        labels:
+          server: "windows_amazon"
+
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+        labels:
+          server: "prometheus"
+
+  - job_name: 'ghost host'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['10.10.10.6:9090']
+        labels:
+          server: "ghost host"
+
+  - job_name: 'kanazuchi.com'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['174.138.112.6:9100']
+        labels:
+          server: "kanazuchi.com"
+
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets: ["localhost:9093"]

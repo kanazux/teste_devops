@@ -1,0 +1,12 @@
+iapiVersion: 1
+
+deleteDatasources:
+  - name: Graphite
+    orgId: 1
+
+datasources:
+  - name: 'ds_alertmanager'
+    type: Prometheus AlertManager
+    access: proxy
+    url: http://localhost:9093
+    version: 1

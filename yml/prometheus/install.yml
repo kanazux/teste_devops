@@ -1,0 +1,102 @@
+- include: create_user_group.yml
+
+- name: Create Project Directory
+  file:
+    path: "/opt/projetos/prometheus"
+    mode: 0755
+    owner: prometheus
+    group: prometheus
+    state: directory
+
+- name: Create Prometheus Directory in /etc
+  file:
+    path: "/etc/prometheus"
+    mode: 0755
+    owner: prometheus
+    group: prometheus
+    state: directory
+
+- name: Create Promethues Directory in /var/lib
+  file:
+    path: "/var/lib/prometheus"
+    mode: 0755
+    owner: prometheus
+    group: prometheus
+    state: directory
+
+- name: Get Prometheus
+  unarchive:
+    src: https://github.com/prometheus/prometheus/releases/download/v2.0.0/prometheus-2.0.0.linux-amd64.tar.gz
+    dest: /opt/projetos/prometheus/
+    remote_src: yes
+  when: "prometheus_files.matched|int == 0"
+
+- name: Ensure Prometheus Is Not Running
+  service: name="prometheus" state="stopped"
+  ignore_errors: yes
+
+- name: Copy Prometheus Files to Directories
+  shell: "{{ item }}"
+  args:
+    chdir: /opt/projetos/prometheus/prometheus-2.0.0.linux-amd64/
+  with_items:
+    - /bin/cp -n prometheus /usr/local/bin/
+    - /bin/cp -n promtool /usr/local/bin/
+    - /bin/cp -nr consoles/ /etc/prometheus/
+    - /bin/cp -nr console_libraries/ /etc/prometheus/
+
+- name: Copy Prometheus.yml
+  copy:
+    src: "prometheus.yml"
+    dest: "/etc/prometheus/prometheus.yml"
+    mode: 0655
+    owner: prometheus
+    group: prometheus
+
+- name: Copy Rules.yml
+  copy:
+    src: "rules.yml"
+    dest: "/etc/prometheus/rules.yml"
+    mode: 0655
+    owner: prometheus
+    group: prometheus
+
+- name: Change Permission Prometheus Binary
+  file:
+    path: "{{ item }}"
+    owner: prometheus
+    group: prometheus
+    mode: 0755
+  with_items:
+    - /usr/local/bin/prometheus
+    - /usr/local/bin/promtool
+    - /etc/prometheus/prometheus.yml
+
+- name: Change Permission Prometheus Directories
+  file:
+    path: "{{ item }}"
+    owner: prometheus
+    group: prometheus
+    mode: 0755
+    recurse: yes
+  with_items:
+    - /etc/prometheus/consoles
+    - /etc/prometheus/console_libraries
+
+- name: Create Prometheus Directory in /var/log
+  file:
+    path: "/var/log/prometheus"
+    mode: 0755
+    owner: prometheus
+    group: prometheus
+    state: directory
+
+- name: Create Prometheus Directory in /var/run
+  file:
+    path: "/var/run/prometheus"
+    mode: 0755
+    owner: prometheus
+    group: prometheus
+    state: directory
+
+- include: create_init_files.yml

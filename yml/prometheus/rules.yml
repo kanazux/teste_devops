@@ -1,0 +1,44 @@
+groups:
+- name: InstanceDown
+  rules:
+  - alert: InstanceDown
+    expr: up == 0
+    for: 5m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.server }} down"
+      description: "{{ $labels.server }} of job {{ $labels.job }} has been down for more than 5 minutes."
+
+- name: HighMemory
+  rules:
+  - alert: HighMemory
+    expr: (100 - ((node_memory_MemAvailable_bytes{instance=~".*",job=~".*"} * 100) / node_memory_MemTotal_bytes{instance=~".*",job=~".*"})) >= 70
+    for: 5m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.server }} was with high memory usage"
+      description: "{{ $labels.server }} of job {{ $labels.job }} needs attention."
+
+- name: HighDiskUsage
+  rules:
+  - alert: HighDiskUsage
+    expr: (100 - ((node_filesystem_avail_bytes{instance=~".*",job=~".*",mountpoint="/",fstype!="rootfs"} * 100) / node_filesystem_size_bytes{instance=~".*",job=~".*",mountpoint="/",fstype!="rootfs"})) >= 70
+    for: 5m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.server }} was with high disk usage"
+      description: "{{ $labels.server }} of job {{ $labels.job }} needs attention."
+
+- name: ProcessHighMemoryUsage
+  rules:
+  - alert: ProcessHighMemoryUsage
+    expr: namedprocess_namegroup_memory_bytes{memtype="virtual"} >= 128000000
+    for: 5m
+    labels:
+      severity: page
+    annotations:
+      summary: "Process {{ $labels.groupname }} was with high memory usage"
+      description: "{{ $labels.server }} of job {{ $labels.job }} needs attention."

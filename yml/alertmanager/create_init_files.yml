@@ -1,0 +1,16 @@
+- name: Create Init Alertmanager
+  block:
+    - name: Copy Init File
+      copy:
+        src: init/alertmanager
+        dest: /etc/init.d/alertmanager
+        mode: 0777
+        owner: root
+        group: root
+
+    - name: Update RC alertmanager
+      command: update-rc.d alertmanager defaults
+
+    - name: Define alertmanager to Start on Boot
+      command: echo "START=yes" > /etc/default/alertmanager
+  when: "'service could not be found' not in alertmanager_service"
