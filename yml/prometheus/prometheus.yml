@@ -8,14 +8,14 @@ scrape_configs:
   - job_name: 'dashboard_caterpy_info'
     scrape_interval: 5s
     static_configs:
-      - targets: ['162.243.160.204:9100']
+      - targets: ['198.211.96.214:9100']
         labels:
           server: "caterpy_info"
 
   - job_name: 'process_caterpy_info'
     scrape_interval: 5s
     static_configs:
-      - targets: ['162.243.160.204:9256']
+      - targets: ['198.211.96.214:9256']
         labels:
           server: "caterpy_info"
 
