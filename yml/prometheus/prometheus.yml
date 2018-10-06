@@ -26,6 +26,13 @@ scrape_configs:
         labels:
           server: "windows_amazon"
 
+  - job_name: 'windows_instance'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['170.245.139.235:9182']
+        labels:
+          server: "windows_instance"
+
   - job_name: 'prometheus'
     scrape_interval: 5s
     static_configs:
