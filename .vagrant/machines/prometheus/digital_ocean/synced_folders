@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/kanazuchi/projetos/cloud/prometheus_digital","disabled":false,"__vagrantfile":true,"owner":"root","group":"root"}}}
