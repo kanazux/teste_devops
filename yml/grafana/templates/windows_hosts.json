@@ -30,19 +30,20 @@
       "fill": 10,
       "gridPos": {
         "h": 7,
-        "w": 24,
+        "w": 12,
         "x": 0,
         "y": 0
       },
       "hideTimeOverride": false,
       "id": 4,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -88,7 +89,24 @@
           "step": 20
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 2,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 2,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "CPU load",
@@ -137,19 +155,20 @@
       "fill": 1,
       "gridPos": {
         "h": 7,
-        "w": 24,
-        "x": 0,
+        "w": 12,
+        "x": 12,
         "y": 7
       },
       "hideTimeOverride": false,
       "id": 13,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -194,7 +213,24 @@
           "step": 20
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 0.10,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 0.10,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "System exception dispatches",
@@ -243,19 +279,20 @@
       "fill": 1,
       "gridPos": {
         "h": 7,
-        "w": 24,
+        "w": 12,
         "x": 0,
         "y": 14
       },
       "hideTimeOverride": false,
       "id": 11,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -326,7 +363,24 @@
           "step": 10
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 1024000000,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": false,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 1024000000,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Network",
@@ -374,20 +428,21 @@
       "datasource": "ds_prometheus",
       "fill": 1,
       "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
+        "h": 7,
+        "w": 12,
+        "x": 12,
         "y": 21
       },
       "hideTimeOverride": false,
       "id": 10,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -458,7 +513,24 @@
           "step": 15
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 200,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 200,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Network discarded/error packets",
@@ -506,20 +578,21 @@
       "datasource": "ds_prometheus",
       "fill": 2,
       "gridPos": {
-        "h": 8,
-        "w": 24,
+        "h": 7,
+        "w": 12,
         "x": 0,
         "y": 27
       },
       "hideTimeOverride": false,
       "id": 8,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -590,7 +663,24 @@
           "step": 20
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 1800,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 1800,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Hard drive load",
@@ -639,19 +729,20 @@
       "fill": 1,
       "gridPos": {
         "h": 8,
-        "w": 24,
-        "x": 0,
+        "w": 12,
+        "x": 12,
         "y": 35
       },
       "hideTimeOverride": false,
       "id": 12,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -696,7 +787,24 @@
           "step": 20
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 200,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 200,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "system_threads",
@@ -745,19 +853,20 @@
       "fill": 1,
       "gridPos": {
         "h": 7,
-        "w": 24,
+        "w": 12,
         "x": 0,
         "y": 43
       },
       "hideTimeOverride": false,
       "id": 9,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -802,7 +911,24 @@
           "step": 20
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 200,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 200,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Hard disk i/o ops total",
@@ -851,19 +977,20 @@
       "fill": 1,
       "gridPos": {
         "h": 7,
-        "w": 24,
-        "x": 0,
+        "w": 12,
+        "x": 12,
         "y": 50
       },
       "hideTimeOverride": false,
       "id": 15,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -908,7 +1035,24 @@
           "step": 20
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 500000000000,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 500000000000,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Hard disk free space",
@@ -957,19 +1101,20 @@
       "fill": 1,
       "gridPos": {
         "h": 7,
-        "w": 24,
+        "w": 12,
         "x": 0,
         "y": 57
       },
       "hideTimeOverride": false,
       "id": 14,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": true,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -1066,7 +1211,24 @@
           "step": 5
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 5000000000,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 5000000000,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Memory",
@@ -1118,18 +1280,19 @@
       "fill": 10,
       "gridPos": {
         "h": 6,
-        "w": 24,
-        "x": 0,
+        "w": 12,
+        "x": 12,
         "y": 64
       },
       "id": 7,
+      "span": 6,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": false
@@ -1168,11 +1331,28 @@
           "options": {
             "showDisabledItems": false
           },
-          "refId": "A",
+          "reId": "A",
           "step": 5
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+          {
+          "value": 200,
+          "colorMode": "ok",
+          "op": "lt",
+          "fill": true,
+          "line": false,
+          "yaxis": "right"
+          },
+          {
+          "value": 200,
+          "colorMode": "critical",
+          "op": "gt",
+          "fill": true,
+          "line": false,
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Services by state",
